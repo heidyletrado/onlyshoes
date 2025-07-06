@@ -1,0 +1,117 @@
+<<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ONLYSHOES - Venta de calzado</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+<header class="header">
+  <div class="menu container">
+    <a href="#" class="logo">ONLYSHOES</a>
+    <div class="cart-container">
+      <img src="imagenes/carrito.jpg" alt="Carrito" class="cart-icon"/>
+      <span id="cart-count">0</span>
+    </div>
+
+    <input type="checkbox" id="menu-toggle"/>
+    <label for="menu-toggle" class="menu-icon">&#9776;</label>
+    <nav class="navbar">
+      <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#productos">Productos</a></li>
+        <li><a href="#registro">Registro</a></li>
+        <li><a href="#carrito">Carrito</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="header-content container" id="inicio">
+    <h1>Bienvenidos a ONLYSHOES</h1>
+    <p>Tu tienda en línea especializada en calzado deportivo, elegante y de dotación.</p>
+    <a href="#productos" class="btn-1">Ver productos</a>
+  </div>
+</header>
+
+<!-- Carrito oculto -->
+<div id="cart-items" class="cart-items hidden">
+  <h3>Carrito de compras</h3>
+  <ul id="cart-list"></ul>
+  <p>Total: $<span id="cart-total">0</span></p>
+  <button id="checkout-btn">Finalizar compra</button>
+</div>
+
+<!-- Productos -->
+<section class="products container" id="productos">
+  <h2>Nuestros Productos</h2>
+  <div class="products-list">
+
+    <div class="products-card">
+      <img src="imagenes/tenis1.jpg.png" alt="Tenis deportivos" />
+      <h3>Tenis deportivos</h3>
+      <p>$250.000</p>
+      <button onclick="agregaralcarrito('Tenis Deportivos', 250000)">Agregar al carrito</button>
+    </div>
+
+    <div class="products-card">
+      <img src="imagenes/casual1.jpg.png" alt="Zapatos elegantes" />
+      <h3>Zapatos elegantes</h3>
+      <p>$400.000</p>
+      <button onclick="agregaralcarrito('Zapatos Elegantes', 400000)">Agregar al carrito</button>
+    </div>
+
+    <div class="products-card">
+      <img src="imagenes/dotacion1.jpg.png" alt="Zapatos de dotación" />
+      <h3>Zapatos de dotación</h3>
+      <p>$200.000</p>
+      <button onclick="agregaralcarrito('Zapatos de Dotación', 200000)">Agregar al carrito</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- Registro -->
+<section id="registro" class="registro container">
+  <h2>Regístrate</h2>
+  <form id="registroform">
+    <input type="text" id="nombre" placeholder="Nombre completo" required>
+    <input type="email" id="correo" placeholder="Correo electrónico" required>
+    <input type="password" id="contraseña" placeholder="Contraseña" required>
+    <button type="submit">Registrarse</button>
+  </form>
+</section>
+
+<!-- Carrito -->
+<section class="carrito container" id="carrito">
+  <h2>Carrito de compras</h2>
+  <ul id="lista-carrito"></ul>
+  <p id="total">Total: $0</p>
+  <button onclick="vaciarcarrito()">Vaciar carrito</button>
+</section>
+
+<!-- Servicios -->
+<section class="servicios container" id="servicios">
+  <h2>Nuestros Servicios</h2>
+  <p>En OnlyShoes ofrecemos asesoramiento personalizado, ventas al por mayor, entregas a domicilio y más.</p>
+</section>
+
+<!-- Contacto -->
+<section class="contacto container" id="contacto">
+  <h2>Contacto</h2>
+  <p>Correo: contacto@onlyshoes.com | Teléfono: 3001234567</p>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <p>&copy; 2025 ONLYSHOES. Todos los derechos reservados.</p>
+</footer>
+
+<!-- Script -->
+<script src="script.js" defer></script>
+
+</body>
+</html>
