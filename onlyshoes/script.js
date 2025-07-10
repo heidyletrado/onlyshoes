@@ -1,80 +1,69 @@
-// script.js
+// Mostrar solo la sección activa al hacer clic en el menú
+document.querySelectorAll('nav a').forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = this.getAttribute('href').substring(1);
 
-// Manejo del carrito
-document.addEventListener('DOMContentLoaded', () => {
-  let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-  const cartIcon = document.querySelector('.cart-container');
-  const cartItemsContainer = document.getElementById('cart-items');
-  const cartList = document.getElementById('cart-list');
-  const cartTotal = document.getElementById('cart-total');
-  const cartCount = document.getElementById('cart-count');
-  const checkoutBtn = document.getElementById('checkout-btn');
-
-  function updateCartUI() {
-    if (!cartList || !cartTotal || !cartCount) return;
-    cartList.innerHTML = '';
-    let total = 0;
-    cart.forEach(item => {
-      const li = document.createElement('li');
-      li.textContent = `${item.name} - $${item.price.toLocaleString()}`;
-      cartList.appendChild(li);
-      total += item.price;
+    document.querySelectorAll('.seccion').forEach(sec => {
+      sec.classList.remove('activa');
     });
-    cartTotal.textContent = total.toLocaleString();
-    cartCount.textContent = cart.length;
-  }
 
-  window.agregaralcarrito = function(nombre, precio) {
-    const producto = { name: nombre, price: precio };
-    cart.push(producto);
-    localStorage.setItem('cart', JSON.stringify(cart));
-    updateCartUI();
-    cartItemsContainer.classList.remove('hidden');
-  }
+    const targetSection = document.getElementById(target);
+    if (targetSection) {
+      targetSection.classList.add('activa');
+      targetSection.scrollIntoView({ behavior: "smooth" });
+    }
+  });
+});
 
-  // Botón para vaciar el carrito (si existe)
-  const vaciarBtn = document.querySelector('.carrito button');
-  if (vaciarBtn) {
-    vaciarBtn.addEventListener('click', () => {
-      cart = [];
-      localStorage.setItem('cart', JSON.stringify(cart));
-      updateCartUI();
-    });
-  }
+// Carrito de compras
+let carrito = [];
 
-  // Mostrar/ocultar carrito al hacer clic en el ícono
-  if (cartIcon && cartItemsContainer) {
-    cartIcon.addEventListener('click', () => {
-      cartItemsContainer.classList.toggle('hidden');
-    });
-  }
+function agregarAlCarrito(nombre, precio) {
+  carrito.push({ nombre, precio });
+  actualizarCarrito();
+}
 
-  // Checkout
-  if (checkoutBtn) {
-    checkoutBtn.addEventListener('click', () => {
-      alert('Compra finalizada. Gracias por su compra.');
-      cart = [];
-      localStorage.removeItem('cart');
-      updateCartUI();
-      cartItemsContainer.classList.add('hidden');
-    });
-  }
+function actualizarCarrito() {
+  const lista = document.getElementById('carrito-lista');
+  const total = document.getElementById('carrito-total');
+  lista.innerHTML = '';
 
-  // Registro de usuario
-  const form = document.getElementById('registroform');
-  if (form) {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const name = document.getElementById('nombre').value;
-      const email = document.getElementById('correo').value;
-      const password = document.getElementById('contraseña').value;
-      const user = { name, email, password };
-      localStorage.setItem('user', JSON.stringify(user));
-      alert('Usuario registrado correctamente');
-      form.reset();
-    });
-  }
+  let suma = 0;
+  carrito.forEach(item => {
+    const li = document.createElement('li');
+    li.textContent = `${item.nombre} - $${item.precio.toLocaleString()}`;
+    lista.appendChild(li);
+    suma += item.precio;
+  });
 
-  updateCartUI();
+  total.textContent = `Total: $${suma.toLocaleString()}`;
+}
+
+function vaciarCarrito() {
+  carrito = [];
+  actualizarCarrito();
+}
+
+// Filtrar productos por categoría
+function filtrarCategoria(categoria) {
+  const productos = document.querySelectorAll('.product-card');
+
+  productos.forEach(producto => {
+    if (categoria === 'todos') {
+      producto.style.display = 'block';
+    } else {
+      producto.style.display = producto.classList.contains(categoria) ? 'block' : 'none';
+    }
+  });
+}
+
+// Registro (opcionalmente puedes capturar datos)
+document.getElementById('form-registro').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const nombre = document.getElementById('nombre').value;
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+  alert(`Gracias por registrarte, ${nombre}!`);
+  this.reset();
 });
