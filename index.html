@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ONLYSHOES - Venta de Calzado</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Encabezado -->
+  <header>
+    <input type="checkbox" id="menu-toggle">
+    <label for="menu-toggle" class="menu-icon">&#9776;</label>
+    <nav class="navbar">
+      <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#productos">Productos</a></li>
+        <li><a href="#registro">Registro</a></li>
+        <li><a href="#carrito">Carrito</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Sección Inicio -->
+  <section id="inicio" class="container seccion activa">
+    <h2>Bienvenidos a ONLYSHOES</h2>
+    <p>Tu tienda confiable de calzado deportivo, elegante y de dotación.</p>
+  </section>
+
+  <!-- Sección Servicios -->
+  <section id="servicios" class="container seccion">
+    <h2>Nuestros Servicios</h2>
+    <p>Ventas por catálogo, entregas a domicilio, atención personalizada, y más.</p>
+  </section>
+
+  <!-- Sección Productos -->
+  <section id="productos" class="container seccion">
+    <h2>Catálogo de Productos</h2>
+
+    <!-- Botones de Categoría -->
+    <div class="category-buttons">
+      <button onclick="filtrarCategoria('tenis')">Tenis</button>
+      <button onclick="filtrarCategoria('elegantes')">Elegantes</button>
+      <button onclick="filtrarCategoria('dotacion')">Dotación</button>
+      <button onclick="filtrarCategoria('todos')">Todos</button>
+    </div>
+
+    <!-- Lista de Productos -->
+    <div class="product-list" id="product-list">
+      <!-- Tenis -->
+      <div class="product-card tenis">
+        <img src="imagenes/TENIS1.png" alt="Tenis 1">
+        <h3>Tenis 1</h3>
+        <p>$150.000</p>
+        <button onclick="agregarAlCarrito('Tenis 1', 150000)">Agregar al carrito</button>
+      </div>
+      <div class="product-card tenis">
+        <img src="imagenes/TENIS2.png" alt="Tenis 2">
+        <h3>Tenis 2</h3>
+        <p>$170.000</p>
+        <button onclick="agregarAlCarrito('Tenis 2', 170000)">Agregar al carrito</button>
+      </div>
+      <div class="product-card tenis">
+        <img src="imagenes/TENIS3.png" alt="Tenis 3">
+        <h3>Tenis 3</h3>
+        <p>$180.000</p>
+        <button onclick="agregarAlCarrito('Tenis 3', 180000)">Agregar al carrito</button>
+      </div>
+
+      <!-- Elegantes -->
+      <div class="product-card elegantes">
+        <img src="imagenes/CASUAL1.png" alt="Elegante 1">
+        <h3>Elegante 1</h3>
+        <p>$220.000</p>
+        <button onclick="agregarAlCarrito('Elegante 1', 220000)">Agregar al carrito</button>
+      </div>
+      <div class="product-card elegantes">
+        <img src="imagenes/CASUAL2.png" alt="Elegante 2">
+        <h3>Elegante 2</h3>
+        <p>$240.000</p>
+        <button onclick="agregarAlCarrito('Elegante 2', 240000)">Agregar al carrito</button>
+      </div>
+      <div class="product-card elegantes">
+        <img src="imagenes/CASUAL3.png" alt="Elegante 3">
+        <h3>Elegante 3</h3>
+        <p>$260.000</p>
+        <button onclick="agregarAlCarrito('Elegante 3', 260000)">Agregar al carrito</button>
+      </div>
+
+      <!-- Dotación -->
+      <div class="product-card dotacion">
+        <img src="imagenes/DOTACION1.png" alt="Dotación 1">
+        <h3>Dotación 1</h3>
+        <p>$200.000</p>
+        <button onclick="agregarAlCarrito('Dotación 1', 200000)">Agregar al carrito</button>
+      </div>
+      <div class="product-card dotacion">
+        <img src="imagenes/DOTACION2.png" alt="Dotación 2">
+        <h3>Dotación 2</h3>
+        <p>$210.000</p>
+        <button onclick="agregarAlCarrito('Dotación 2', 210000)">Agregar al carrito</button>
+      </div>
+      <div class="product-card dotacion">
+        <img src="imagenes/DOTACION3.png" alt="Dotación 3">
+        <h3>Dotación 3</h3>
+        <p>$230.000</p>
+        <button onclick="agregarAlCarrito('Dotación 3', 230000)">Agregar al carrito</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección Registro -->
+  <section id="registro" class="container seccion">
+    <h2>Regístrate</h2>
+    <form id="form-registro">
+      <input type="text" id="nombre" placeholder="Nombre completo" required>
+      <input type="email" id="email" placeholder="Correo electrónico" required>
+      <input type="password" id="password" placeholder="Contraseña" required>
+      <button type="submit">Registrarse</button>
+    </form>
+  </section>
+
+  <!-- Sección Carrito -->
+  <section id="carrito" class="container seccion">
+    <h2>Carrito de Compras</h2>
+    <ul id="carrito-lista"></ul>
+    <p id="carrito-total">Total: $0</p>
+    <button onclick="vaciarCarrito()">Vaciar carrito</button>
+  </section>
+
+  <!-- Sección Contacto -->
+  <section id="contacto" class="container seccion">
+    <h2>Contacto</h2>
+    <p>Correo: contacto@onlyshoes.com</p>
+    <p>Teléfono: 3101234567</p>
+    <p>Dirección: Calle 123, Bogotá</p>
+  </section>
+
+  <!-- Pie de página -->
+  <footer class="container">
+    <p>&copy; 2025 ONLYSHOES. Todos los derechos reservados.</p>
+  </footer>
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
